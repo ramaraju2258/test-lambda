@@ -24,7 +24,8 @@ pipeline {
 	                  sh 'echo "deploying template to AWS "'
 	                      aws cloudformation create-stack --stack-name testnew48 --template-url "https://cloudformation-test2258.s3.eu-west-1.amazonaws.com/lambda-packaged.yaml" --region eu-west-1 --capabilities CAPABILITY_NAMED_IAM
 	                  }
-	              }	 
+	              }	
+		   }
 	         }
 	     }
 	}
