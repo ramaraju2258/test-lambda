@@ -56,12 +56,6 @@ pipeline {
     }
 
     stage('deploy-testing') {
-      agent {
-        docker {
-          image 'public.ecr.aws/sam/build-provided'
-          args '--user 0:0 -v /var/run/docker.sock:/var/run/docker.sock'
-        }
-      }
       steps {
         withAWS(
             credentials: env.PIPELINE_USER_CREDENTIAL_ID,
