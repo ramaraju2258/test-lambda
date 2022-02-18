@@ -101,9 +101,6 @@ pipeline {
     }
 
     stage('deploy-testing') {
-      when {
-        branch env.MAIN_BRANCH
-      }
       agent {
         docker {
           image 'public.ecr.aws/sam/build-provided'
