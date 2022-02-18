@@ -9,7 +9,7 @@ Parameters:
   ParamS3Key:
     Description: The S3 key for the lambda code zip file
     Type: String
-    Default: 'lambda_function_new.zip'
+    Default: 'lambda_function.zip'
 Resources:
   
   LambdaFunction:
