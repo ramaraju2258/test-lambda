@@ -63,7 +63,8 @@ pipeline {
               --region ${TESTING_REGION} \
               --s3-bucket ${TESTING_ARTIFACTS_BUCKET} \
               --no-fail-on-empty-changeset \
-              --role-arn ${TESTING_CLOUDFORMATION_EXECUTION_ROLE}
+              --role-arn ${TESTING_CLOUDFORMATION_EXECUTION_ROLE} 
+              --parameter-overrides ParamS3Key=lambda_function.zip
           '''
         }
       }
