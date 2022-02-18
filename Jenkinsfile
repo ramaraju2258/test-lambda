@@ -5,8 +5,8 @@ pipeline {
     SAM_TEMPLATE = 'lambda-packaged.yaml'
     MAIN_BRANCH = 'master'
     TESTING_STACK_NAME = 'sam-testing'
-    TESTING_PIPELINE_EXECUTION_ROLE = 'arn:aws:iam::260913995125:role/aws-sam-cli-managed-dev-pipe-PipelineExecutionRole-1NQR2QTSR53SE'
-    TESTING_CLOUDFORMATION_EXECUTION_ROLE = 'arn:aws:iam::260913995125:role/aws-sam-cli-managed-dev-p-CloudFormationExecutionR-16F6U72MH7EA9'
+    TESTING_PIPELINE_EXECUTION_ROLE = 'arn:aws:iam::260913995125:role/AMI-Search-testnew12'
+    TESTING_CLOUDFORMATION_EXECUTION_ROLE = 'arn:aws:iam::260913995125:role/AMI-Search-testnew12'
     TESTING_ARTIFACTS_BUCKET = 'aws-sam-cli-managed-dev-pipeline-artifactsbucket-dlzbz12lecax'
     // If there are functions with "Image" PackageType in your template,
     // uncomment the line below and add "--image-repository ${TESTING_IMAGE_REPOSITORY}" to
