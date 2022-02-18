@@ -88,7 +88,7 @@ pipeline {
     stage('deploy-testing') {
       agent {
         docker {
-          image 'public.ecr.aws/sam/build-provided'
+          image 'public.ecr.aws/sam/build-provided.al2'
         }
       }
       steps {
