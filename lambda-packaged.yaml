@@ -28,7 +28,7 @@ Resources:
       MemorySize: 128
       Role: arn:aws:iam::260913995125:role/AMI-Search-testnew12
       Runtime: python3.9
-      Timeout: 92
+      Timeout: 52
 Outputs:
   LambdaFunctionARN:
     Description: The ARN of the lambda function
