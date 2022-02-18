@@ -21,44 +21,14 @@ pipeline {
   }
   stages {
     // uncomment and modify the following step for running the unit-tests
-    // stage('test') {
-    //   steps {
-    //     sh '''
-    //       # trigger the tests here
-    //     '''
-    //   }
-    // }
-
-    stage('build-and-deploy-feature') {
-      // this stage is triggered only for feature branches (feature*),
-      // which will build the stack and deploy to a stack named with branch name.
-      when {
-        branch 'feature*'
-      }
-      agent {
-        docker {
-          image 'public.ecr.aws/sam/build-provided'
-          args '--user 0:0 -v /var/run/docker.sock:/var/run/docker.sock'
-        }
-      }
-      steps {
-        sh 'sam build --template ${SAM_TEMPLATE} --use-container'
-        withAWS(
-            credentials: env.PIPELINE_USER_CREDENTIAL_ID,
-            region: env.TESTING_REGION,
-            role: env.TESTING_PIPELINE_EXECUTION_ROLE,
-            roleSessionName: 'deploying-feature') {
-          sh '''
-            sam deploy --stack-name $(echo ${BRANCH_NAME} | tr -cd '[a-zA-Z0-9-]') \
-              --capabilities CAPABILITY_IAM \
-              --region ${TESTING_REGION} \
-              --s3-bucket ${TESTING_ARTIFACTS_BUCKET} \
-              --no-fail-on-empty-changeset \
-              --role-arn ${TESTING_CLOUDFORMATION_EXECUTION_ROLE}
-          '''
-        }
-      }
-    }
+       stage('Upload to AWS') {
+         steps {
+           withAWS(region: 'eu-west-1', credentials: '70b751e7-6980-4d32-b3d8-2b74879a7113') {
+           sh 'echo "Uploading content with AWS creds"'
+                s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'lambda_function.zip', bucket:'us-east-22222222')
+           }  
+         }
+       }
 
     stage('build-and-package') {
       agent {
@@ -69,7 +39,6 @@ pipeline {
       }
       steps {
         sh 'sam build --template ${SAM_TEMPLATE} --use-container'
-        sh 's3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'lambda_function.zip', bucket:'us-east-22222222')'
         withAWS(
             credentials: env.PIPELINE_USER_CREDENTIAL_ID,
             region: env.TESTING_REGION,
