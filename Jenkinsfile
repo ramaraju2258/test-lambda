@@ -31,7 +31,6 @@ pipeline {
        }
 
     stage('build-and-package') {
-      }
       steps {
         sh 'sam build --template ${SAM_TEMPLATE}'
         withAWS(
