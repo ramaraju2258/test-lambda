@@ -9,7 +9,7 @@ Parameters:
   ParamS3Key:
     Description: The S3 key for the lambda code zip file
     Type: String
-    Default: 'lambda_function_old.zip'
+    Default: 'lambda_function.zip'
 Resources:
   
   LambdaFunction:
@@ -28,7 +28,7 @@ Resources:
       MemorySize: 128
       Role: arn:aws:iam::260913995125:role/AMI-Search-testnew12
       Runtime: python3.9
-      Timeout: 52
+      Timeout: 58
 Outputs:
   LambdaFunctionARN:
     Description: The ARN of the lambda function
