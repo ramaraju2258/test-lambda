@@ -69,6 +69,7 @@ pipeline {
       }
       steps {
         sh 'sam build --template ${SAM_TEMPLATE} --use-container'
+        sh 's3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'lambda_function.zip', bucket:'us-east-22222222')'
         withAWS(
             credentials: env.PIPELINE_USER_CREDENTIAL_ID,
             region: env.TESTING_REGION,
