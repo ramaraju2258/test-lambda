@@ -81,22 +81,7 @@ pipeline {
               --output-template-file packaged-testing.yaml
           '''
         }
-
-        withAWS(
-            credentials: env.PIPELINE_USER_CREDENTIAL_ID,
-            region: env.PROD_REGION,
-            role: env.PROD_PIPELINE_EXECUTION_ROLE,
-            roleSessionName: 'prod-packaging') {
-          sh '''
-            sam package \
-              --s3-bucket ${PROD_ARTIFACTS_BUCKET} \
-              --region ${PROD_REGION} \
-              --output-template-file packaged-prod.yaml
-          '''
-        }
-
         archiveArtifacts artifacts: 'packaged-testing.yaml'
-        archiveArtifacts artifacts: 'packaged-prod.yaml'
       }
     }
 
