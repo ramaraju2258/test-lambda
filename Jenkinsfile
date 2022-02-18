@@ -4,7 +4,7 @@ pipeline {
     PIPELINE_USER_CREDENTIAL_ID = 'aws-credentials'
     SAM_TEMPLATE = 'lambda-packaged.yaml'
     MAIN_BRANCH = 'master'
-    TESTING_STACK_NAME = 'sam-testing'
+    TESTING_STACK_NAME = 'lambda-deploy'
     TESTING_PIPELINE_EXECUTION_ROLE = 'arn:aws:iam::260913995125:role/AMI-Search-testnew12'
     TESTING_CLOUDFORMATION_EXECUTION_ROLE = 'arn:aws:iam::260913995125:role/AMI-Search-testnew12'
     TESTING_ARTIFACTS_BUCKET = 'us-east-22222222'
