@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Deploy a Lambda custom resource for Cloudformation to search for and
   return latest AMI ID
-  Parameters:
+Parameters:
   ParamS3Bucket:
     Description: The S3 Bucket that holds the lambda code
     Type: String
