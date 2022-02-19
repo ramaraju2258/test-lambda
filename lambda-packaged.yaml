@@ -37,4 +37,4 @@ Outputs:
       - LambdaFunction
       - Arn
     Export:
-      Name: test
+      Name: test22
