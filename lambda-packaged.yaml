@@ -23,7 +23,7 @@ Resources:
       Description: Custom CloudFormation resoiurce to return the latest AMI with given
         search parameters
       FunctionName:
-        Fn::Sub: Lambda-POC1
+        Fn::Sub: Lamda-${AWS::StackName}
       Handler: lambda_function.lambda_handler
       MemorySize: 128
       Role: arn:aws:iam::926559377299:role/AMI-Search-testnew25
