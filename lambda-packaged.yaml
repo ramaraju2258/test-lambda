@@ -5,13 +5,65 @@ Parameters:
   ParamS3Bucket:
     Description: The S3 Bucket that holds the lambda code
     Type: String
-    Default: 'us-east-22222222'
+    Default: 'cloudformation-test2258'
   ParamS3Key:
     Description: The S3 key for the lambda code zip file
     Type: String
     Default: 'lambda_function.zip'
 Resources:
-  
+  LambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - lambda.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Policies:
+      - PolicyName: CloudFormationRead
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - cloudformation:DescribeStacks
+            Resource:
+              Fn::Sub: arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:*
+      - PolicyName: AllowLambdaToWriteLogs
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - logs:CreateLogStream
+            - logs:PutLogEvents
+            Resource:
+              Fn::Sub: arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/*:*
+          - Sid: AllowLambdaToCreateLogGroups
+            Effect: Allow
+            Action:
+            - logs:CreateLogGroup
+            Resource:
+              Fn::Sub: arn:aws:logs:${AWS::Region}:${AWS::AccountId}:*
+      - PolicyName: EC2ReadImages
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - ec2:DescribeFpgaImages
+            - ec2:DescribeImageAttribute
+            - ec2:DescribeImages
+            - ec2:DescribeFpgaImages
+            Resource: '*'
+      RoleName:
+        Fn::Sub: AMI-Search-${AWS::StackName}
+      Path:
+        Fn::Sub: /
   LambdaFunction:
     Type: AWS::Lambda::Function
     Properties:
@@ -26,9 +78,10 @@ Resources:
         Fn::Sub: AMI-Search-${AWS::StackName}
       Handler: lambda_function.lambda_handler
       MemorySize: 128
-      Role: arn:aws:iam::260913995125:role/AMI-Search-testnew12
+      Role:
+        Fn::GetAtt: LambdaRole.Arn
       Runtime: python3.9
-      Timeout: 58
+      Timeout: 60
 Outputs:
   LambdaFunctionARN:
     Description: The ARN of the lambda function
@@ -37,4 +90,4 @@ Outputs:
       - LambdaFunction
       - Arn
     Export:
-      Name: test
+      Name: AMISearchARN
