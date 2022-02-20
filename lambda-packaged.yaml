@@ -13,7 +13,7 @@ Parameters:
   LambdaVersion:
     Description: The S3 key for the lambda code zip file
     Type: String
-    Default: '6oCat5X_noyIZZa.hfKCeOXM2uLutDjF'
+    Default: 6oCat5X_noyIZZa.hfKCeOXM2uLutDjF
 
 Resources:
   
