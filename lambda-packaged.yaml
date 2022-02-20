@@ -19,9 +19,9 @@ Resources:
   
   LambdaFunction:
     Type: AWS::Lambda::Function
-  Environment:
-    Variables:
-      databaseName : lambdadb
+    Environment:
+      Variables:
+        databaseName : lambdadb
     Properties:
       Code:
         S3Bucket:
