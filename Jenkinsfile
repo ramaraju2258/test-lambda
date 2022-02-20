@@ -15,8 +15,8 @@ pipeline {
               steps {
                   withAWS(region: 'eu-west-1', credentials: 'b88fdb60-2c8b-4275-b761-17a120f01186') {
                    sh '''
-                   aws s3api list-object-versions --bucket cloudformation-test2258 --prefix lambda_function.zip --query 'Versions[?IsLatest].[VersionId]' --output text > version.txt
-                   echo version.txt -> ${latest_version}
+                   latest_version=$(aws s3api list-object-versions --bucket cloudformation-test2258 --prefix lambda_function.zip --query 'Versions[?IsLatest].[VersionId]' --output text)
+                   echo latest_version -> ${latest_version}
                    echo ${latest_version}
                    '''
                    def latest_version = sh(script: 'cat version.txt' returnStdout: true
