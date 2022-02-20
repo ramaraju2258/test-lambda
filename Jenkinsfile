@@ -17,6 +17,8 @@ pipeline {
                        script {
                             sh '''
                                aws s3api list-object-versions --bucket cloudformation-test2258 --prefix lambda_function.zip --query 'Versions[?IsLatest].[VersionId]' --output text > version.txt
+                               latest_version = readFile(file: 'version.txt')
+                               latest_version.trim()
                             '''
                        }  
                   sh 'aws cloudformation update-stack --stack-name testnew57 --template-url "https://cloudformation-test2258.s3.eu-west-1.amazonaws.com/lambda-packaged.yaml" --parameters ParameterKey=ParamS3Bucket,UsePreviousValue=true ParameterKey=ParamS3Key,UsePreviousValue=true ParameterKey=LambdaVersion,ParameterValue=${latest_version}'
