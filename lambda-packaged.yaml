@@ -10,9 +10,6 @@ Parameters:
     Description: The S3 key for the lambda code zip file
     Type: String
     Default: lambda_function.zip
-  LambdaVersion:
-    Description: The S3 key for the lambda code zip file
-    Type: String
 
 Resources:
   
@@ -24,8 +21,7 @@ Resources:
           Ref: ParamS3Bucket
         S3Key:
           Ref: ParamS3Key
-        S3ObjectVersion:
-          Ref: LambdaVersion
+
       Description: Custom CloudFormation resoiurce to return the latest AMI with given
         search parameters
       FunctionName:
