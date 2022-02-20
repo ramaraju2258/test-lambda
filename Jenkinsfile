@@ -17,7 +17,7 @@ pipeline {
                        environment {
                          CC = """${sh(
                                  returnStdout: true,
-                                 script: 'aws s3api list-object-versions --bucket cloudformation-test2258 --prefix lambda_function.zip --query 'Versions[?IsLatest].[VersionId]' --output text
+                                 script: 'aws s3api list-object-versions --bucket cloudformation-test2258 --prefix lambda_function.zip --query 'Versions[?IsLatest].[VersionId]' --output text'
                               )}"""
                        } 
                   sh 'echo $latest_version'   
