@@ -19,9 +19,6 @@ Resources:
   
   LambdaFunction:
     Type: AWS::Lambda::Function
-    Environment:
-      Variables:
-        databaseName : lambdadb
     Properties:
       Code:
         S3Bucket:
@@ -32,6 +29,9 @@ Resources:
           Ref: LambdaVersion
       Description: Custom CloudFormation resoiurce to return the latest AMI with given
         search parameters
+      Environment:
+        Variables:
+          databaseName : lambdadb
       FunctionName:
         Fn::Sub: Lamda-${AWS::StackName}
       Handler: lambda_function.lambda_handler
