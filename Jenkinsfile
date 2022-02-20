@@ -20,7 +20,7 @@ pipeline {
                             '''
                             latest_version = readFile(file: 'version.txt')
                             latest_version.trim()
-                            echo $latest_version 
+                            cat latest_version 
                        }  
                   sh 'aws cloudformation update-stack --stack-name testnew57 --template-url "https://cloudformation-test2258.s3.eu-west-1.amazonaws.com/lambda-packaged.yaml" --parameters ParameterKey=ParamS3Bucket,UsePreviousValue=true ParameterKey=ParamS3Key,UsePreviousValue=true ParameterKey=LambdaVersion,ParameterValue=${latest_version}'
                   }
