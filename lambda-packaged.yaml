@@ -21,8 +21,8 @@ Resources:
     Type: AWS::Lambda::Function
   Environment:
     Variables:
+      Type: Map of String
       databaseName: lambdadb
-      databaseUser: admin
     Properties:
       Code:
         S3Bucket:
