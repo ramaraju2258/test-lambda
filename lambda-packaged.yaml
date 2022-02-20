@@ -4,12 +4,10 @@ Description: Deploy a Lambda custom resource for Cloudformation to search for an
 Parameters:
   ParamS3Bucket:
     Description: The S3 Bucket that holds the lambda code
-    Type: String
-    Default: 'cloudformation-test2258'
+    Type: String   
   ParamS3Key:
     Description: The S3 key for the lambda code zip file
     Type: String
-    Default: 'lambda_function.zip'
 Resources:
   
   LambdaFunction:
