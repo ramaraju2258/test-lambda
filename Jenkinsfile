@@ -14,8 +14,7 @@ pipeline {
          stage('Upload to AWS') {
               steps {
                   withAWS(region: 'eu-west-1', credentials: 'b88fdb60-2c8b-4275-b761-17a120f01186') {
-                  sh 'echo "Uploading content with AWS creds"'
-                      latest_version=$'(aws s3api list-object-versions --bucket cloudformation-test2258 --prefix lambda_function.zip --query 'Versions[?IsLatest].[VersionId]' --output text)'
+                  sh 's3 ls'
                   sh 'aws cloudformation update-stack --stack-name testnew58 --template-url "https://cloudformation-test2258.s3.eu-west-1.amazonaws.com/lambda-packaged.yaml" --parameters ParameterKey=ParamS3Bucket,UsePreviousValue=true ParameterKey=ParamS3Key,UsePreviousValue=true ParameterKey=LambdaVersion,ParameterValue=${latest_version}'
                   }
               }
