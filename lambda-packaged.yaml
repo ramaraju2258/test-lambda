@@ -21,7 +21,7 @@ Resources:
     Type: AWS::Lambda::Function
   Environment:
     Variables:
-      Type: Map of String
+      Type: String
       databaseName: lambdadb
     Properties:
       Code:
