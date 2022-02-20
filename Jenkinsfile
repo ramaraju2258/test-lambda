@@ -14,7 +14,7 @@ pipeline {
          stage('Upload to AWS') {
               steps {
                   withAWS(region: 'eu-west-1', credentials: 'b88fdb60-2c8b-4275-b761-17a120f01186') {
-                  sh 'aws cloudformation create-stack --stack-name testnew58 --template-url "https://cloudformation-test2258.s3.eu-west-1.amazonaws.com/lambda-packaged.yaml" --region eu-west-1 --capabilities CAPABILITY_NAMED_IAM'
+                  sh 'aws cloudformation update-stack --stack-name testnew58 --template-url "https://cloudformation-test2258.s3.eu-west-1.amazonaws.com/lambda-packaged.yaml" --region eu-west-1 --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=ParamS3Bucket,ParameterValue=cloudformation-test2258 ParameterKey=ParamS3Key,ParameterValue=lambda_function.zip'
                   }
               }
          }
