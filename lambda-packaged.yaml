@@ -10,6 +10,9 @@ Parameters:
     Description: The S3 key for the lambda code zip file
     Type: String
     Default: lambda_function.zip
+  LambdaVersion:
+    Description: The S3 key for the lambda code zip file
+    Type: String
 
 Resources:
   
@@ -21,16 +24,22 @@ Resources:
           Ref: ParamS3Bucket
         S3Key:
           Ref: ParamS3Key
-
+        S3ObjectVersion:
+          Ref: LambdaVersion
       Description: Custom CloudFormation resoiurce to return the latest AMI with given
         search parameters
+      Environment:
+        Variables:
+          SPLUN_HEC_TOKEN : 123456-abcdef-987654
+          SPLUNK_HEC_URL : www.1234test.com
+          index : api
       FunctionName:
         Fn::Sub: Lamda-${AWS::StackName}
       Handler: lambda_function.lambda_handler
       MemorySize: 128
       Role: arn:aws:iam::260913995125:role/AMI-Search-testnew12
       Runtime: nodejs12.x
-      Timeout: 61
+      Timeout: 60
 Outputs:
   LambdaFunctionARN:
     Description: The ARN of the lambda function
