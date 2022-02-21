@@ -5,7 +5,7 @@ Parameters:
   ParamS3Bucket:
     Description: The S3 Bucket that holds the lambda code
     Type: String
-    Default: cloudformation-test2238
+    Default: lambda-splunk-poc
   ParamS3Key:
     Description: The S3 key for the lambda code zip file
     Type: String
@@ -28,7 +28,7 @@ Resources:
         Fn::Sub: Lamda-${AWS::StackName}
       Handler: lambda_function.lambda_handler
       MemorySize: 128
-      Role: arn:aws:iam::926559377299:role/AMI-Search-testnew25
+      Role: arn:aws:iam::260913995125:role/AMI-Search-testnew12
       Runtime: nodejs12.x
       Timeout: 61
 Outputs:
