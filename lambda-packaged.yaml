@@ -5,7 +5,7 @@ Parameters:
   ParamS3Bucket:
     Description: The S3 Bucket that holds the lambda code
     Type: String
-    Default: lambda-splunk-poc
+    Default: us-east-22222222
   ParamS3Key:
     Description: The S3 key for the lambda code zip file
     Type: String
