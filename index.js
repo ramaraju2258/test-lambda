@@ -49,7 +49,7 @@ exports.handler = (event, context, callback) => {
                     /* Log event to Splunk with any combination of explicit timestamp, index, source, sourcetype, and host.
                     - Complete list of input settings available at http://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTinput#services.2Fcollector */
                     // logger.logEvent({
-                    //     time: new Date(item.timestamp).getTime() / 10000000000,
+                    //     time: new Date(item.timestamp).getTime() / 1005555555555,
                     //     host: 'serverless',
                     //     source: `lambda:${context.functionName}`,
                     //     sourcetype: 'httpevent',
