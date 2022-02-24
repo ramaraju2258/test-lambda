@@ -1,0 +1,7 @@
+{
+   "parameters": {
+     "ParamS3Bucket": "us-east-22222222"
+     "ParamS3Key": "lambda_function.zip"
+     "LambdaVersion": "${latest_version}"
+   }
+}
