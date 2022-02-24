@@ -39,7 +39,7 @@ Resources:
       MemorySize: 128
       Role: arn:aws:iam::260913995125:role/AMI-Search-testnew12
       Runtime: nodejs12.x
-      Timeout: 61
+      Timeout: 65
 Outputs:
   LambdaFunctionARN:
     Description: The ARN of the lambda function
