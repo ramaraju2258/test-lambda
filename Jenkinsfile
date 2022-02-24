@@ -17,7 +17,7 @@ pipeline {
                    sh '''
                    latest_version=$(aws s3api list-object-versions --bucket us-east-22222222 --prefix lambda_function.zip --query 'Versions[?IsLatest].[VersionId]' --output text)
                    echo ${latest_version}
-                   aws cloudformation deploy --template lambda-packaged.yaml --stack-name test555 --parameter-overrides ParameterKey=ParamS3Bucket,UsePreviousValue=true ParameterKey=ParamS3Key,UsePreviousValue=true ParameterKey=LambdaVersion ParameterValue=${latest_version}
+                   aws cloudformation deploy --template lambda-packaged.yaml --stack-name test555 --parameter-overrides file://param.json
                    '''
                   }
               }
