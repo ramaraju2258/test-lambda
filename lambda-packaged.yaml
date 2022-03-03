@@ -32,13 +32,13 @@ Resources:
           SPLUNK_HEC_URL : www.1234test.com
           index : api
       FunctionName:
-      Fn::Sub: Lamda-${AWS::StackName}
+       Fn::Sub: Lamda-${AWS::StackName}
+       Layers: arn:aws:lambda:eu-west-1:260913995125:layer:awslambdas-com-python38-numpy1201:1
       Handler: lambda_function.lambda_handler
       MemorySize: 128
       Role: arn:aws:iam::260913995125:role/AMI-Search-testnew12 
       Runtime: python3.8
       Timeout: 3
-      Layers: arn:aws:lambda:eu-west-1:260913995125:layer:awslambdas-com-python38-numpy1201:1
 Outputs:
   LambdaFunctionARN:
     Description: The ARN of the lambda function
