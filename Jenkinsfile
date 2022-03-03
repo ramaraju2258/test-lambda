@@ -5,7 +5,7 @@ pipeline {
              steps {
                  withAWS(region: 'eu-west-1', credentials: '372cdc38-3d47-4319-b9cc-b8d1d8a3d902') { 
                  sh 'echo "Uploading content with AWS creds"'
-                 sh 'zip -r lambda_function.zip index.js lib'     
+                 sh 'zip -r lambda_function.zip lambda_function(1).py'     
                       s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'lambda_function.zip', bucket:'us-east-22222222')
                       s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'lambda-packaged.yaml', bucket:'us-east-22222222')
                  }
